@@ -1,6 +1,6 @@
 #include "hash.h"
 
-unsigned char simple_hash(unsigned long input) {
+unsigned short simple_hash(unsigned long input) {
     unsigned short hash = INIT_HASH;
 
     for (int i = 0; i < 8; ++i) {

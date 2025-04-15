@@ -1,2 +1,4 @@
-obj/*
+*.o
 .idea/*
+worker
+hash_checker
