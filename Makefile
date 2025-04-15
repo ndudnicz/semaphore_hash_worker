@@ -1,45 +1,66 @@
 HASH_CHECKER = hash_checker
+WORKER = worker
 CC = gcc
 CFLAGS = #-Werror -Wextra -Wall
 
 # SOURCE FOLDERS ==============================================================#
 
-SRC_DIR = .
+SRC_DIR = src
 
 # OBJECTS FOLDERS =============================================================#
 
-OBJ_DIR = obj
+OBJ_DIR_HASH_CHECKER = obj_hash_checker
+OBJ_DIR_WORKER = obj_worker
 
 # INCLUDES FOLDERS ============================================================#
 
-PATH_INCLUDES = .
+PATH_INCLUDES = includes
 
 # SOURCES LIST ================================================================#
 
-SRC = \
+SRC_WORKER = \
+hash.c \
+debug.c \
+init_ipcs.c \
+rand.c \
+worker.c \
+
+SRC_HASH_CHECKER = \
 hash_checker.c \
 hash.c \
 
 # OBJECTS LIST ================================================================#
 
-OBJ = $(SRC:%.c=obj/%.o)
+OBJ_WORKER = $(SRC_WORKER:%.c=obj_worker/%.o)
+OBJ_HASH_CHECKER = $(SRC_HASH_CHECKER:%.c=obj_hash_checker/%.o)
 
 # GENERIC RULES ===============================================================#
 
-all: $(HASH_CHECKER)
+all: $(WORKER) $(HASH_CHECKER)
+
+hash_checker: $(HASH_CHECKER)
 
 clean:
-	$(RM) $(OBJ)
+	$(RM) $(OBJ_WORKER)
+	$(RM) $(OBJ_HASH_CHECKER)
 
 fclean: clean
+	$(RM) $(WORKER)
 	$(RM) $(HASH_CHECKER)
 
 re: clean fclean all
 
-$(HASH_CHECKER): $(OBJ)
-	$(CC) $(CFLAGS) $(DEBUGFLAGS) -o $@ $(OBJ)
+$(HASH_CHECKER): $(OBJ_HASH_CHECKER)
+	$(CC) $(CFLAGS) $(DEBUGFLAGS) -o $@ $(OBJ_HASH_CHECKER)
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
+$(WORKER): $(OBJ_WORKER)
+	$(CC) $(CFLAGS) $(DEBUGFLAGS) -o $@ $(OBJ_WORKER)
+
+$(OBJ_DIR_HASH_CHECKER)/%.o: $(SRC_DIR)/%.c
 	$(CC) $(CFLAGS) $(DEBUGFLAGS) -o $@ -c $< -I $(PATH_INCLUDES)
 
--include $(OBJ:.o=.d)
+$(OBJ_DIR_WORKER)/%.o: $(SRC_DIR)/%.c
+	$(CC) $(CFLAGS) $(DEBUGFLAGS) -o $@ -c $< -I $(PATH_INCLUDES)
+
+-include $(OBJ_WORKER:.o=.d)
+-include $(OBJ_HASH_CHECKER:.o=.d)

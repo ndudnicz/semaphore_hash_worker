@@ -2,6 +2,6 @@
 # define HASH_H
 
 # define INIT_HASH 5381
-unsigned short simple_hash(unsigned long input);
+unsigned int simple_hash(unsigned long input);
 
 #endif //HASH_H

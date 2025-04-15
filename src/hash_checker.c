@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "../hash.h"
+#include "../includes/hash.h"
 
 int    main(int ac, char **av)
 {
@@ -16,9 +16,9 @@ int    main(int ac, char **av)
     }
 
     const unsigned long input = strtoul(av[1], NULL, 10);
-    const unsigned short hash = simple_hash(input);
+    const unsigned int hash = simple_hash(input);
 
-    printf("Hash of %lu is: 0x%x(%hu)\n", input, hash, hash);
+    printf("Hash of %lu is: 0x%4x(%hd)\n", input, hash, hash);
 
     return 0;
 }
