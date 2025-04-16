@@ -1,31 +1,21 @@
 #include "../includes/worker.h"
-#include "../includes/debug.h"
-#include <stdlib.h>
 #include <stdio.h>
-#include <errno.h>
+#include <unistd.h>
+#include <sys/mman.h>
+#include <fcntl.h>
+#include "../includes/debug.h"
 
 int		main(int ac, char **av)
 {
-	if (ac != 2)
-	{
-		printf("Usage: %s <worker_id>\n", av[0]);
-		return (-1);
-	}
 	t_ipcs_config config = {0};
-	config.worker_id = atoi(av[1]);
+	config.worker_pid = getpid();
 
-	int ret = init_ipcs(&config);
-	if (ret == -1)
+	int init_ret = init_shm(&config);
+	if (init_ret == -1)
 	{
-		perror("Error initializing IPCS");
+		release_shm(&config);
 		return (-1);
 	}
 	// print_config(&config);
-	ret = release_ipcs(&config);
-	if (ret == -1)
-	{
-		perror("Error releasing IPCS");
-		return (-1);
-	}
-
+	release_shm(&config);
 }

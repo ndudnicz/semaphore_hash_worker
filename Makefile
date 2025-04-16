@@ -21,7 +21,7 @@ PATH_INCLUDES = includes
 SRC_WORKER = \
 hash.c \
 debug.c \
-init_ipcs.c \
+init_shm.c \
 rand.c \
 worker.c \
 
