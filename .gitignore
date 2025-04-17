@@ -2,3 +2,4 @@
 .idea/*
 worker
 hash_checker
+clean_shm

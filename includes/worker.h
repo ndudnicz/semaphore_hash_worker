@@ -14,7 +14,7 @@ typedef struct	s_board_element
 	unsigned long	value;
 	int				solved;
 	int				solver_id;
-	int				nonce;
+	unsigned int	nonce;
 	unsigned int	hash;
 }				t_board_element;
 
@@ -39,17 +39,21 @@ typedef struct	s_board
 # define MSG_PERM	0666
 # define MSG_FLAG	(IPC_CREAT | IPC_EXCL | MSG_PERM)
 
-typedef struct	s_ipcs_config
+typedef struct	s_shm_config
 {
+	int				first;
 	int				shm_fd;
 	int				shm_id;
 	int				sem_id;
 	int				msg_id;
 	t_board			*board;
 	pid_t			worker_pid;
-}				t_ipcs_config;
+}				t_shm_config;
 
-int		init_shm(t_ipcs_config *config);
-int		release_shm(t_ipcs_config *config);
+int		init_shm(t_shm_config *config);
+int		fill_board(t_shm_config *config);
+int		release_shm(t_shm_config *config);
+int		unmap_shm(t_shm_config *config);
+int		solve_hashes(t_shm_config *config);
 
 #endif //WORKER_H
