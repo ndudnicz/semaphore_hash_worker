@@ -2,8 +2,9 @@
 #include "../includes/worker.h"
 #include <unistd.h>
 #include <string.h>
+#include "../includes/debug.h"
 
-void print_config(t_shm_config *config)
+void	print_config(t_shm_config *config)
 {
     if (config->board == NULL)
 	{
@@ -23,7 +24,38 @@ void print_config(t_shm_config *config)
         }
 }
 
-void print(char *str)
+void	print(char *str)
 {
 	write(1, str, strlen(str));
+}
+
+void	print_results(t_shm_config *config)
+{
+	t_result	results[200] = {0};
+    int 		n_results = 0;
+
+    for (int i = 0; i < BOARD_SIZE; ++i)
+    {
+      	int found = 0;
+    	for (int j = 0; j < n_results; ++j)
+    	{
+    		if (results[j].pid == config->board->board_elements[i].solver_id)
+    		{
+    			results[j].solved++;
+                found = 1;
+    			break;
+    		}
+    	}
+        if (found == 0)
+        {
+        	results[n_results].pid = config->board->board_elements[i].solver_id;
+        	results[n_results].solved = 1;
+        	n_results++;
+        }
+    }
+    printf("Results:\n");
+    for (int i = 0; i < n_results; ++i)
+    {
+    	printf("Worker %d solved %d hashes\n", results[i].pid, results[i].solved);
+    }
 }

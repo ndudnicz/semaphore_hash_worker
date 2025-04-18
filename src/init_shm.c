@@ -8,7 +8,6 @@
 
 int		get_board_addr(t_shm_config *config)
 {
-  	print("get_board_addr\n");
 	config->board = (t_board*)mmap(NULL, SHM_SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, config->shm_fd, 0);
 	if (config->board == MAP_FAILED)
 	{
@@ -20,7 +19,6 @@ int		get_board_addr(t_shm_config *config)
 
 int		fill_board(t_shm_config *config)
 {
-	print("fill_board\n");
 	for (int i = 0; i < BOARD_SIZE; ++i)
 	{
 		config->board->board_elements[i].value = generate_random_ulong();

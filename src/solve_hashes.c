@@ -30,6 +30,12 @@ int		solve_hashes(t_shm_config *config)
             while (HASH_VALIDATE(new_hash) == 0)
             {
             	nonce = get_random_nonce_uint();
+                if (config->debug == 1)
+               	{
+                	printf("Worker %d: Trying nonce %u for value %lu\n", config->worker_pid, nonce,
+						 config->board->board_elements[random_i].value);
+                }
+
             	new_hash = simple_hash_ulong(config->board->board_elements[random_i].value + nonce);
             	if (config->board->board_elements[random_i].solved == 1)
             	{

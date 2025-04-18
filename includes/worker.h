@@ -7,7 +7,7 @@
 # include <sys/msg.h>
 #include <fcntl.h>
 
-# define BOARD_SIZE 10
+# define BOARD_SIZE 200
 
 typedef struct	s_board_element
 {
@@ -30,17 +30,10 @@ typedef struct	s_board
 # define SHM_PERM	0666
 # define SHM_FLAG	(O_CREAT | O_RDWR)
 # define SHM_FLAG_FIRST	(O_CREAT | O_RDWR | O_EXCL)
-// # define SHM_FLAG	(IPC_CREAT | SHM_PERM)
-// # define SHM_FLAG_FIRST	(IPC_CREAT | IPC_EXCL | SHM_PERM)
-//
-# define SEM_PERM	0666
-# define SEM_FLAG	(IPC_CREAT | IPC_EXCL | SEM_PERM)
-
-# define MSG_PERM	0666
-# define MSG_FLAG	(IPC_CREAT | IPC_EXCL | MSG_PERM)
 
 typedef struct	s_shm_config
 {
+	int				debug;
 	int				first;
 	int				shm_fd;
 	int				shm_id;
