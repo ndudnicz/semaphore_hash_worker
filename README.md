@@ -15,18 +15,18 @@ $> ./worker -h
 # -d is debug mode : it will print the hash value and the nonce at every step
 usage: ./worker [-d] [-h]
 $> ./worker
-{ worker_id: 11469, shm_fd: 3, first: 1, board_address : 0x102714000 }
-Board element 0: value=110019521365287, solved=0, solver_id=0, nonce=0, hash=0x00000000
-Board element 1: value=80143520188431, solved=0, solver_id=0, nonce=0, hash=0x00000000
-Board element 2: value=7599560828455, solved=0, solver_id=0, nonce=0, hash=0x00000000
-Worker 11469: Solving hash for value 80143520188431
-Worker 11469: Found nonce 1499904107 for value 80143520188431, hash(80145020092538): 0xFF64D134 (4284797236) in 2.746249 seconds
-Worker 11469: Solving hash for value 110019521365287
-Worker 11469: Found nonce 837602410 for value 110019521365287, hash(110020358967697): 0xFFE1EC0F (4292996111) in 0.252060 seconds
-Worker 11469: Solving hash for value 7599560828455
-Worker 11469: Found nonce 1463866652 for value 7599560828455, hash(7601024695107): 0xFFFF36B4 (4294915764) in 1.654943 seconds
+{ worker_id: 1675, shm_fd: 3, first: 1, board_address : 0x104690000 }
+Board element 0: value=133224369533559, solved=0, solver_id=0, nonce=0, hash=0x00000000
+Board element 1: value=30219719685878, solved=0, solver_id=0, nonce=0, hash=0x00000000
+Board element 2: value=47924507749822, solved=0, solver_id=0, nonce=0, hash=0x00000000
+Worker 1675: Solving hash for value 133224369533559
+Worker 1675: Found nonce 277939868 for value 133224369533559, hash(133224647473427): 0xFF29E882 (4280936578) in 0.911936 seconds
+Worker 1675: Solving hash for value 47924507749822
+Worker 1675: Found nonce 392526340 for value 47924507749822, hash(47924900276162): 0xFFF3527D (4294136445) in 0.473808 seconds
+Worker 1675: Solving hash for value 30219719685878
+Worker 1675: Found nonce 1284578711 for value 30219719685878, hash(30221004264589): 0xFF64D134 (4284797236) in 0.178484 seconds
 Results:
-Worker 11469 solved 3 hashes
+Worker 1675 solved 3 hashes
 ```
 
 ```bash
