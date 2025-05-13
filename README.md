@@ -1,5 +1,5 @@
 ### Concurrency hash solving project
-This project uses a semaphore (shared memory space) to store hashing datas
+This project uses a semaphore (shared memory space) to store hashing data
 
 Multiple processes can compete to solve the hash and store the result in the semaphore
 
